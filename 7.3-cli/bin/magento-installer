@@ -12,6 +12,8 @@ fi
 
 MAGENTO_COMMAND="magento-command"
 
+composer global require hirak/prestissimo
+
 if [ ! -f "$MAGENTO_ROOT/composer.json" ]; then
     echo "Creating Magento $M2SETUP_EDITION ($M2SETUP_VERSION) project from composer"
 
