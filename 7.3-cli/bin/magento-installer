@@ -73,7 +73,9 @@ if [ ! "$M2SETUP_INSTALL_DB" = "false" ]; then
 
     $INSTALL_COMMAND
     $MAGENTO_COMMAND index:reindex
-    $MAGENTO_COMMAND setup:static-content:deploy
+    if [ "$MAGENTO_RUN_MODE" = "production" ]; then
+        $MAGENTO_COMMAND setup:static-content:deploy
+    fi
 
 else
     echo "Skipping DB installation"
