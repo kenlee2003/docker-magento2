@@ -11,7 +11,7 @@ if [ -f "$AUTH_JSON_FILE" ]; then
 fi
 
 MAGENTO_COMMAND="magento-command"
-
+composer config --global repo.packagist composer https://packagist.org
 composer global require hirak/prestissimo
 
 if [ ! -f "$MAGENTO_ROOT/composer.json" ]; then
