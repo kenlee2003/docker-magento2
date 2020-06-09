@@ -91,7 +91,10 @@ echo "Fixing file permissions.."
 
 find $MAGENTO_ROOT/pub -type f -exec chmod 664 {} \;
 find $MAGENTO_ROOT/pub -type d -exec chmod 775 {} \;
-find $MAGENTO_ROOT/var/generation -type d -exec chmod g+s {} \;
+
+if [ "$MAGENTO_RUN_MODE" = "production" ]; then
+    find $MAGENTO_ROOT/var/generation -type d -exec chmod g+s {} \;
+fi
 
 chown -R www-data:www-data $MAGENTO_ROOT
 
