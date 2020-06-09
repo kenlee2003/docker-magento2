@@ -81,6 +81,14 @@ else
     echo "Skipping DB installation"
 fi
 
+if [ "$MAGENTO_UPDATEDB" = "true" ]; then
+    $MAGENTO_COMMAND setup:upgrade
+    $MAGENTO_COMMAND index:reindex
+fi
+if [ "$MAGENTO_RUN_MODE" = "production" ]; then
+    $MAGENTO_COMMAND setup:static-content:deploy
+fi
+
 echo "Fixing file permissions.."
 
 [ -f "$MAGENTO_ROOT/vendor/magento/framework/Filesystem/DriverInterface.php" ] \
