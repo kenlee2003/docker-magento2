@@ -11,6 +11,7 @@ if [ -f "$AUTH_JSON_FILE" ]; then
 fi
 
 MAGENTO_COMMAND="magento-command"
+$MAGENTO_COMMAND maintenance:enable
 composer config --global repo.packagist composer https://packagist.org
 composer global require hirak/prestissimo
 
@@ -35,7 +36,7 @@ else
     composer --working-dir=$MAGENTO_ROOT install
 fi
 
-chown -R www-data:www-data $MAGENTO_ROOT
+chown -Rf www-data:www-data $MAGENTO_ROOT
 
 if [ ! "$M2SETUP_INSTALL_DB" = "false" ]; then
 
@@ -104,6 +105,8 @@ if [ "$MAGENTO_RUN_MODE" = "production" ]; then
     find $MAGENTO_ROOT/var/generation -type d -exec chmod g+s {} \;
 fi
 
-chown -R www-data:www-data $MAGENTO_ROOT
+chown -Rf www-data:www-data $MAGENTO_ROOT
+
+$MAGENTO_COMMAND maintenance:disable
 
 echo "Installation complete"
