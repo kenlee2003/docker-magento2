@@ -13,6 +13,7 @@ fi
 MAGENTO_COMMAND="magento-command"
 $MAGENTO_COMMAND maintenance:enable
 composer config --global repo.packagist composer https://packagist.org
+composer config repositories.amasty composer https://composer.amasty.com/enterprise/
 composer global require hirak/prestissimo
 
 if [ ! -f "$MAGENTO_ROOT/composer.json" ]; then
