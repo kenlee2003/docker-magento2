@@ -14,6 +14,11 @@ MAGENTO_COMMAND="magento-command"
 $MAGENTO_COMMAND maintenance:enable
 composer config --global repo.packagist composer https://packagist.org
 composer config repositories.amasty composer https://composer.amasty.com/enterprise/
+composer config --auth http-basic.composer.amasty.com $COMPOSER_AMASTY_USERNAME $COMPOSER_AMASTY_PASSWORD
+composer config repositories.mirasvit-ssu2 composer https://$COMPOSER_MIRASVIT_SEARCH_USERNAME:$COMPOSER_MIRASVIT_SEARCH_PASSWORD@packages.mirasvit.com/$COMPOSER_MIRASVIT_SEARCH_USERNAME:$COMPOSER_MIRASVIT_SEARCH_PASSWORD/
+composer config repositories.mirasvit-tes2 composer https://$COMPOSER_MIRASVIT_EMAIL_USERNAME:$COMPOSER_MIRASVIT_EMAIL_PASSWORD@packages.mirasvit.com/$COMPOSER_MIRASVIT_EMAIL_USERNAME:$COMPOSER_MIRASVIT_EMAIL_PASSWORD/
+composer config repositories.magefan composer https://magefan.com/repo/
+composer config --auth http-basic.magefan.com $COMPOSER_MAGEFAN_USERNAME $COMPOSER_MAGEFAN_PASSWORD
 composer global require hirak/prestissimo
 
 if [ ! -f "$MAGENTO_ROOT/composer.json" ]; then
@@ -89,7 +94,8 @@ if [ "$MAGENTO_UPDATEDB" = "true" ]; then
     $MAGENTO_COMMAND index:reindex
 fi
 if [ "$MAGENTO_RUN_MODE" = "production" ]; then
-    $MAGENTO_COMMAND setup:static-content:deploy
+    $MAGENTO_COMMAND setup:di:compile
+    $MAGENTO_COMMAND setup:static-content:deploy en_US zh_Hant_HK zh_Hans_CN
 fi
 
 echo "Fixing file permissions.."
