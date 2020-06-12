@@ -6,4 +6,4 @@ MAGENTO_COMMAND="$MAGENTO_ROOT/bin/magento"
 
 chmod +x $MAGENTO_COMMAND
 
-exec sudo -u www-data -- -d memory_limit=-1 $MAGENTO_COMMAND "$@"
+exec sudo -u www-data -- $MAGENTO_COMMAND "$@"
