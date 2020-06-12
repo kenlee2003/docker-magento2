@@ -20,6 +20,7 @@ composer config --working-dir=$MAGENTO_ROOT repositories.mirasvit-tes2 composer 
 composer config --working-dir=$MAGENTO_ROOT repositories.magefan composer https://magefan.com/repo/
 composer config --working-dir=$MAGENTO_ROOT --auth http-basic.magefan.com $COMPOSER_MAGEFAN_USERNAME $COMPOSER_MAGEFAN_PASSWORD
 composer global require hirak/prestissimo
+composer --working-dir=$MAGENTO_ROOT dump-autoload -o --apcu
 
 if [ ! -f "$MAGENTO_ROOT/composer.json" ]; then
     echo "Creating Magento $M2SETUP_EDITION ($M2SETUP_VERSION) project from composer"
