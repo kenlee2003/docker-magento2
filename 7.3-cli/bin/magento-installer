@@ -44,7 +44,8 @@ else
     composer --working-dir=$MAGENTO_ROOT update
 fi
 
-chown -Rf www-data:www-data $MAGENTO_ROOT
+chown -Rf www-data:www-data /var/www
+#chown -Rf www-data:www-data $MAGENTO_ROOT
 
 if [ ! "$M2SETUP_INSTALL_DB" = "false" ]; then
 
