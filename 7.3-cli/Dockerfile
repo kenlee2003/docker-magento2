@@ -24,7 +24,7 @@ RUN apt-get update \
     git \ 
     libzip-dev
 
-RUN apt-get install -y curl \
+RUN apt-get install -y curl python \
   && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
   && apt-get install -y nodejs \
   && curl -L https://www.npmjs.com/install.sh | sh
