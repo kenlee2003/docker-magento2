@@ -99,7 +99,12 @@ if [ "$MAGENTO_RUN_MODE" = "production" ]; then
     $MAGENTO_COMMAND setup:di:compile
     $MAGENTO_COMMAND setup:static-content:deploy en_US zh_Hant_HK zh_Hans_CN
 fi
-
+if [ "$MAGENTO_PWA" = "true" ]; then
+    $MAGENTO_COMMAND scandipwa:theme:bootstrap $PWA_THEME
+    cd $MAGENTO_ROOT/app/design/frontend/$PWA_THEME
+    sudo -u www-data npm ci
+    sudo -u www-data npm run build
+fi
 echo "Fixing file permissions.."
 
 [ -f "$MAGENTO_ROOT/vendor/magento/framework/Filesystem/DriverInterface.php" ] \
