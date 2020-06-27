@@ -28,8 +28,6 @@ RUN apt-get install -y curl python \
   && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
   && apt-get install -y nodejs \
   && curl -L https://www.npmjs.com/install.sh | sh
-  
-RUN sudo -u www-data npm install -g webpack webpack-cli
 
 # Configure the gd library
 RUN docker-php-ext-configure \
